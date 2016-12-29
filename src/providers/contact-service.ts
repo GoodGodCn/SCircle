@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Observable, Subject } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-import { Contact } from './contact';
+import { Contact } from '../models/contact';
 
 /*
   Generated class for the ContactService provider.
