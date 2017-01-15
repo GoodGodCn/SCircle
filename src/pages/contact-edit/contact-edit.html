@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{contact?.contactName||'添加联系人'}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>名称</ion-label>
+      <ion-input type="text" [(ngModel)]="contact.contactName" name="contactName" autofocus></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>非准确名称</ion-label>
+      <ion-checkbox [(ngModel)]="contact.uncertainName" name="uncertainName"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <button type="button" ion-button block (click)="saveContact()">保存</button> {{contact|json}}
+</ion-content>

@@ -7,7 +7,7 @@ export class Contact {
     /** 联系人名称。 */
     public contactName: string,
     /** 表示名称是模糊或不明确的。 */
-    public uncertainName: boolean = false,
+    public uncertainName: boolean,
     /** 性别。 */
     public gender: number,
     /** 所在单位或组织。 */

@@ -5,14 +5,26 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-fab bottom right>
+    <button ion-fab color="secondary" (click)="addContact()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
-    </ion-item>
-    <ion-item *ngFor="let contact of contacts | async">
-      <ion-icon name="contact" item-left></ion-icon> {{contact.contactName}}
-    </ion-item>
+    <ion-item-sliding *ngFor="let contact of contacts">
+      <button ion-item>
+        <ion-icon name="contact" item-left></ion-icon> {{contact.contactName}}
+      </button>
+      <ion-item-options side="left">
+        <button ion-button color="secondary">
+          <ion-icon name="call"></ion-icon>呼叫
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="removeContact(contact)">
+          <ion-icon name="close"></ion-icon>删除
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <!--最后一行用于避免浮动按钮挡住内容-->
+    <ion-item>&nbsp;</ion-item>
   </ion-list>
 </ion-content>

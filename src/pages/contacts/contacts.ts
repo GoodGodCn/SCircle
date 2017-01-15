@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Observable } from 'rxjs/Rx';
 
 import { Contact } from '../../models/contact';
 import { ContactService } from '../../providers/contact-service';
+import { ContactEditPage } from '../contact-edit/contact-edit';
 
 /** 联系人列表页。 */
 @Component({
@@ -12,7 +12,7 @@ import { ContactService } from '../../providers/contact-service';
 })
 export class ContactsPage {
   /** 联系人列表。 */
-  protected contacts: Observable<Contact[]>;
+  protected contacts: Contact[];
 
   constructor(
     private navCtrl: NavController,
@@ -20,12 +20,20 @@ export class ContactsPage {
     private contactService: ContactService
   ) { }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ContactsPage');
+  ionViewDidLoad(): void {
+    this.refreshContacts();
   }
 
-  protected refreshContacts(): void {
-    this.contacts = this.contactService.getContactList();
+  protected async refreshContacts(): Promise<void> {
+    this.contacts = await this.contactService.getContacts();
+  }
+
+  protected addContact(): void {
+    this.navCtrl.push(ContactEditPage);
+  }
+
+  protected removeContact(contact: Contact): void {
+    this.contactService.removeContact(contact.contactId);
   }
 
 }
