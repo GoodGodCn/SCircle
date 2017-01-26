@@ -1,4 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
@@ -22,7 +24,18 @@ import { TabsPage } from '../pages/tabs/tabs';
     TabsPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, { mode: 'md' }, {
+      links: [
+        { component: AboutPage, name: 'About', segment: 'about' },
+        { component: ContactsPage, name: 'Contacts', segment: 'contacts' },
+        { component: ContactViewPage, name: 'ContactView', segment: 'contactView' },
+        { component: ContactEditPage, name: 'ContactEdit', segment: 'contactEdit', defaultHistory: [ContactsPage] },
+        { component: HomePage, name: 'Home', segment: 'home' },
+        { component: TabsPage, name: 'Tabs', segment: 'tabs' }
+      ]
+    }),
+    MaterialModule.forRoot(),
+    FlexLayoutModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -33,7 +33,7 @@ export class ContactService {
     if (!this.store) {
       this.store = await this.storage.get(this.storeName);
 
-      if (this.store) {
+      if (this.store && this.store.length > 0) {
         let lastItem = this.store.reduce((prev, crnt) => prev.contactId > crnt.contactId ? prev : crnt);
         this.storeMeta.seed = lastItem.contactId;
       } else {

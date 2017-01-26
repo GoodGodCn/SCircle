@@ -5,6 +5,9 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
+// 引入 Material 自定义主题。
+@import "material";
+
 @import "ionic.globals";
 
 
@@ -26,13 +29,22 @@ $headings-font-weight: 300;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
+// 改用 Material 主题颜色。
 $colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
-  danger:     #f53d3d,
+  primary:    color($app-primary, 500),
+  secondary:  color($app-accent, 500),
+  danger:     color($app-warn, 500),
   light:      #f4f4f4,
   dark:       #222
 );
+
+// $colors: (
+//   primary:    #387ef5,
+//   secondary:  #32db64,
+//   danger:     #f53d3d,
+//   light:      #f4f4f4,
+//   dark:       #222
+// );
 
 
 // App iOS Variables
@@ -85,3 +97,4 @@ $toolbar-md-active-color:                 #fff;
 
 @import "roboto";
 @import "noto-sans";
+

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { Contact } from '../../models/contact';
 import { ContactService } from '../../providers/contact-service';
@@ -8,8 +9,22 @@ import { ContactService } from '../../providers/contact-service';
   templateUrl: 'contact-edit.html'
 })
 export class ContactEditPage {
+  @ViewChild(NgForm)
+  protected mainForm: NgForm;
 
-  protected contact: Contact = {} as Contact;
+  /** 默认数据模型。 */
+  protected defaultModel: Contact = {
+    gender: 0,
+    // organizations: [],
+    // industry: [],
+    // occupation: [],
+    // mobilePhone: [],
+    // telephone: [],
+    // interests: [],
+    // skills: []
+  } as Contact;
+
+  protected contact: Contact = this.defaultModel;
 
   constructor(
     private navCtrl: NavController,
@@ -18,7 +33,13 @@ export class ContactEditPage {
   ) { }
 
   ionViewDidLoad() {
-    this.contact = this.navParams.get('contact') || {};
+    this.contact = this.navParams.get('contact') || this.defaultModel;
+  }
+
+  protected formSubmit(): void {
+    if (this.mainForm.valid) {
+      this.saveContact();
+    }
   }
 
   protected async saveContact(): Promise<void> {

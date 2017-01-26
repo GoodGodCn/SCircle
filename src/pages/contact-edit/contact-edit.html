@@ -8,15 +8,91 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label floating>名称</ion-label>
-      <ion-input type="text" [(ngModel)]="contact.contactName" name="contactName" autofocus></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>非准确名称</ion-label>
-      <ion-checkbox [(ngModel)]="contact.uncertainName" name="uncertainName"></ion-checkbox>
-    </ion-item>
-  </ion-list>
-  <button type="button" ion-button block (click)="saveContact()">保存</button> {{contact|json}}
+  <form id="mainForm" (submit)="formSubmit()">
+    <md-card>
+      <md-card-content>
+        <p fxLayout="row" fxLayoutAlign="space-around center">
+          <md-input-container fxFlex="auto">
+            <input type="text" md-input placeholder="名称" [(ngModel)]="contact.contactName" name="contactName" autofocus required />
+          </md-input-container>
+        </p>
+        <p fxLayout="row" fxLayoutAlign="space-around center">
+          <md-checkbox fxFlex="none" [(ngModel)]="contact.uncertainName" name="uncertainName">非准确名称</md-checkbox>
+          <span fxFlex="grow">&nbsp;</span>
+          <md-radio-group fxFlex="none" [(ngModel)]="contact.gender" name="gender">
+            <md-radio-button value="0">未知性别</md-radio-button>&nbsp;
+            <md-radio-button value="1">男</md-radio-button>&nbsp;
+            <md-radio-button value="2">女</md-radio-button>
+          </md-radio-group>
+        </p>
+      </md-card-content>
+    </md-card>
+    <p fxLayout="row" fxLayoutAlign="space-around center">
+      <md-input-container fxFlex="auto" hintLabel="可用分号分隔多个数据">
+        <input type="text" md-input placeholder="所在单位或组织" [(ngModel)]="contact.organizations" name="organizations" />
+      </md-input-container>
+    </p>
+    <p fxLayout="row" fxLayoutAlign="space-around center">
+      <md-input-container fxFlex="auto" hintLabel="如工业、商业、信息行业等，可用分号分隔多个数据">
+        <input type="text" md-input placeholder="所属行业" [(ngModel)]="contact.industries" name="industries" />
+      </md-input-container>
+    </p>
+    <p fxLayout="row" fxLayoutAlign="space-around center">
+      <md-input-container fxFlex="auto" hintLabel="如工人、商人、设计师等，可用分号分隔多个数据">
+        <input type="text" md-input placeholder="当前职业名称" [(ngModel)]="contact.occupations" name="occupations" />
+      </md-input-container>
+    </p>
+    <!--<p fxLayout="row" fxLayoutAlign="space-around center">
+      <md-input-container fxFlex="auto" hintLabel="包含常用顺序，可用分号分隔多个数据">
+        <input type="text" md-input placeholder="移动电话" [(ngModel)]="contact.mobilePhone" name="mobilePhone" />
+      </md-input-container>
+    </p>-->
+    <p fxLayout="row" fxLayoutAlign="space-around center">
+      <md-input-container fxFlex="auto" hintLabel="包含常用顺序，可用分号分隔多个数据">
+        <input type="text" md-input placeholder="固定电话。" [(ngModel)]="contact.telephones" name="telephones" />
+      </md-input-container>
+    </p>
+    <p fxLayout="row" fxLayoutAlign="space-around center">
+      <md-input-container fxFlex="auto" hintLabel="年份不确定时记为 0001 年">
+        <input type="date" md-input placeholder="公历生日" [(ngModel)]="contact.birthday" name="birthday" />
+      </md-input-container>
+    </p>
+    <p fxLayout="row" fxLayoutAlign="space-around center">
+      <md-input-container fxFlex="auto">
+        <input type="text" md-input placeholder="阴历生日" [(ngModel)]="contact.lunaBirthday" name="lunaBirthday" />
+      </md-input-container>
+    </p>
+    <p fxLayout="row" fxLayoutAlign="space-around center">
+      <md-input-container fxFlex="auto">
+        <input type="text" md-input placeholder="爱好" [(ngModel)]="contact.interests" name="interests" />
+      </md-input-container>
+    </p>
+    <p fxLayout="row" fxLayoutAlign="space-around center">
+      <md-input-container fxFlex="auto">
+        <input type="text" md-input placeholder="擅长的技能" [(ngModel)]="contact.skills" name="skills" />
+      </md-input-container>
+    </p>
+    <p fxLayout="row" fxLayoutAlign="space-around center">
+      <md-input-container fxFlex="auto">
+        <input type="text" md-input placeholder="婚姻状况" [(ngModel)]="contact.maritalStatus" name="maritalStatus" />
+      </md-input-container>
+    </p>
+    <p fxLayout="row" fxLayoutAlign="space-around center">
+      <md-input-container fxFlex="auto">
+        <input type="text" md-input placeholder="配偶名称" [(ngModel)]="contact.spouseName" name="spouseName" />
+      </md-input-container>
+    </p>
+    <p fxLayout="row" fxLayoutAlign="space-around center">
+      <md-input-container fxFlex="auto">
+        <textarea md-input placeholder="备注" [(ngModel)]="contact.remarts" name="remarts"></textarea>
+      </md-input-container>
+    </p>
+    <!--<p fxLayout="row" fxLayoutAlign="space-around center">
+      <button type="submit" md-button fxFlex="auto" [disabled]="mainForm.invalid">保存</button>
+    </p>-->
+  </form>
+  {{contact|json}}
+  <ion-fab bottom center>
+    <button type="submit" form="mainForm" ion-fab [disabled]="mainForm.invalid"><ion-icon name="checkmark"></ion-icon></button>
+  </ion-fab>
 </ion-content>
