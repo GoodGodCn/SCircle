@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, ClassProvider, FactoryProvider } from '@angular/core';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -12,10 +12,12 @@ import { ContactViewPage } from '../pages/contact-view/contact-view';
 import { ContactEditPage } from '../pages/contact-edit/contact-edit';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { InputArrayComponent } from '../components/input-array/input-array';
 
 @NgModule({
   declarations: [
     MyApp,
+    InputArrayComponent,
     AboutPage,
     ContactsPage,
     ContactViewPage,
@@ -45,16 +47,15 @@ import { TabsPage } from '../pages/tabs/tabs';
     ContactViewPage,
     ContactEditPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    InputArrayComponent
   ],
   providers: [
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: ErrorHandler, useClass: IonicErrorHandler } as ClassProvider,
     {
       provide: Storage,
-      useFactory: () => {
-        return new Storage(['sqlite', 'websql', 'indexeddb', 'localstorage'], { name: 'SmartCircle' });
-      }
-    },
+      useFactory: () => new Storage(['sqlite', 'websql', 'indexeddb', 'localstorage'], { name: 'SmartCircle' })
+    } as FactoryProvider,
     ContactService
   ]
 })

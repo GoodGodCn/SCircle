@@ -5,12 +5,9 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-fab bottom right>
-    <button ion-fab color="secondary" (click)="addContact()"><ion-icon name="add"></ion-icon></button>
-  </ion-fab>
   <ion-list>
     <ion-item-sliding *ngFor="let contact of contacts">
-      <button ion-item>
+      <button ion-item (click)="viewContact(contact)">
         <ion-icon name="contact" item-left></ion-icon> {{contact.contactName}}
       </button>
       <ion-item-options side="left">
@@ -27,4 +24,7 @@
     <!--最后一行用于避免浮动按钮挡住内容-->
     <ion-item>&nbsp;</ion-item>
   </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab (click)="addContact()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>

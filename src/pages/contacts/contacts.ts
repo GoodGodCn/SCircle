@@ -28,6 +28,10 @@ export class ContactsPage {
     this.contacts = await this.contactService.getContacts();
   }
 
+  protected viewContact(contact: Contact): void {
+    this.navCtrl.push(ContactEditPage, { contact: contact });
+  }
+
   protected addContact(): void {
     this.navCtrl.push(ContactEditPage);
   }

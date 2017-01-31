@@ -1,0 +1,8 @@
+<md-input-container *ngFor="let valueItem of value; let i=index; trackBy:customTrackBy">
+  <input type="text" md-input [placeholder]="i===0?placeholder:'~'+(i+1)" [(ngModel)]="value[i]" (blur)="onItemBlur(valueItem,i)"
+    [disabled]="disabled" />
+</md-input-container>
+<md-input-container [hidden]="value&&value.length>0&&!value[value.length-1]">
+  <input type="text" md-input [placeholder]="value&&value.length>0?addButtonText:placeholder" (focus)="appendItem()" [disabled]="disabled"
+  />
+</md-input-container>
